@@ -1,0 +1,233 @@
+@layer erp-grid {
+/* Shared spacing grid. Typography, icon strokes and data visualizations retain their own scales. */
+:root{--erp-space-1:8px;--erp-space-2:16px;--erp-space-3:24px;--erp-space-4:32px}
+/* Important grid rules in this layer supersede the unlayered historical styles. */
+html body .app>.main>main,
+html body.merp-frame{padding:24px!important}
+html body.merp-frame>main{padding:0!important;margin-top:0!important}
+html body.ai-session .app>.main>main{padding:0!important}
+html body :is(.cards,#cards,#tasks,.grid,.stats,.asset-business-metrics,.asset-backlog-row,.task-detail-layout){gap:16px!important}
+html body :is(.merp-directory-controls,.filters,.automation-tabbar,.merp-directory-tabbar,.market-tabs,#workspace-activity-tabs){gap:24px!important}
+html body :is(.merp-source,.merp-task-status,.directory-create-actions,.directory-card-actions,.auto-actions,.form-actions,.compose-tools){gap:8px!important}
+html body :is(.merp-directory-controls,.filters){margin:16px 0 24px!important}
+html body :is(.card,.job,.panel,.stat,.asset-backlog-card,.task-detail-card){padding:16px!important}
+html body #cards .card.agent-layout-v3{padding:16px!important}
+html body #cards .agent-layout-v3 :is(.cardtop,.agent-heading-row){margin-bottom:0!important;gap:8px!important}
+html body #cards .agent-layout-v3 .cardtop{margin-bottom:8px!important}
+html body #cards .agent-layout-v3>.cardtop+p{margin:0 0 8px!important}
+html body .agent-heading-text{gap:0!important}
+html body .role-skill-chips{gap:8px!important}
+html body .role-skill-chips span{padding:0 8px!important}
+html body :is(.auto-head,.auto-state,.auto-trigger,.auto-capabilities,.auto-footer,.detail-skills){gap:8px!important}
+html body .auto-head{margin-bottom:16px!important}
+html body .auto-trigger{margin:8px 0!important;padding:8px!important}
+html body .auto-capabilities{margin:0 0 8px!important}
+html body .auto-footer{padding-top:16px!important}
+html body .auto-actions button{height:32px!important;padding:0 8px!important}
+html body :is(.role-card,.task-detail-hero,.agent-detail-body){padding:24px!important}
+html body dialog{padding:24px!important}
+html body dialog.reference-agent-details{padding:0!important}
+html body .reference-agent-details>header{padding:24px 24px 0!important;gap:16px!important}
+html body .reference-agent-details>footer{padding:16px 24px!important;gap:8px!important}
+html body :is(.detail-skills article,.merp-row-field){padding:8px 16px!important}
+html body :is(.merp-row-grid,#edit-form,.market-dialog form){gap:16px!important}
+html body #editor :is(input,select){height:32px!important;min-height:32px!important;padding:0 8px!important}
+html body #editor textarea{padding:8px!important;height:64px!important;min-height:64px!important}
+html body :is(.recommendation-card,.conversation-recommendation){padding:0 8px!important;gap:8px!important}
+html body :is(.recommendation-type,.recommendation-attention-label){padding:0 8px!important;margin-right:8px!important}
+html body.ai-session #chatlog{padding:24px!important}
+html body.ai-session .reference-composer .composer{padding:8px 16px!important;margin:16px auto 24px!important}
+html body.ai-session .compose-tools{margin:8px 0 0!important;padding:0!important;gap:8px!important}
+html body #global-ai-orb .one-compose{padding:8px!important;margin:16px!important;gap:8px!important}
+html body#merp-workspace.merp #workspace-sidebar{padding:16px!important}
+html body#merp-workspace.merp #workspace-sidebar .sidebar-brand{height:80px!important;min-height:80px!important;flex:0 0 80px!important;padding:0 8px 32px!important;gap:8px!important;box-sizing:border-box!important}
+html body#merp-workspace.merp #workspace-sidebar .brand-lockup{gap:16px!important}
+html body#merp-workspace.merp #sidebar-collapse{width:32px!important;height:32px!important;min-height:32px!important;flex:0 0 32px!important;padding:0!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;line-height:1!important}
+html body#merp-workspace.merp #sidebar-collapse>svg{display:block!important;width:18px!important;height:18px!important;flex:0 0 18px!important;margin:0!important}
+html body#merp-workspace.merp #workspace-sidebar .nav{margin:0 0 8px!important;padding:0 8px!important;gap:16px!important;width:100%!important;min-width:0!important}
+html body#merp-workspace.merp #workspace-sidebar .nav i{justify-items:start!important}
+html body#merp-workspace.merp.merp-nav-collapsed #workspace-sidebar .sidebar-brand{padding:0 0 32px 8px!important;justify-content:flex-start!important}
+html body#merp-workspace.merp.merp-nav-collapsed #workspace-sidebar .nav{padding:0 0 0 8px!important}
+/* Shared geometry, aligned page headers and responsive content columns. */
+html body :is(.app>.main,main,.merp-directory-tabbar,.automation-tabbar,.agent-heading-text,.task-detail-layout){min-width:0!important}
+html body.merp-frame :is(#cards,#tasks){display:grid!important;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))!important;gap:16px!important}
+html body :is(#workspace-activity-tabs,.market-tabs,.automation-tabbar>.tabs){margin-top:0!important;min-height:56px!important;align-items:stretch!important}
+html body :is(#workspace-activity-tabs,.market-tabs,.automation-tabbar>.tabs)>button{height:56px!important;min-height:56px!important;line-height:32px!important;padding:0 0 16px!important;display:inline-flex!important;align-items:center!important;gap:8px!important;box-sizing:border-box!important}
+html body :is(.merp-directory-tabbar,.automation-tabbar){margin:0 0 16px!important;padding:0!important;align-items:stretch!important}
+html body .directory-create-actions{padding:0 0 16px!important;gap:8px!important}
+html body .automation-tabbar>#new-task{align-self:center!important;margin:0 0 16px!important}
+html body :is(.directory-create-actions,.directory-card-actions,.form-actions)>button,
+html body #new-task{height:32px!important;min-height:32px!important;padding:0 16px!important;border-radius:8px!important;white-space:nowrap!important}
+html body :is(.card,.job,.panel,.stat,.asset-backlog-card,.task-detail-card){border-radius:16px!important}
+html body dialog{border-radius:16px!important}
+html body .reference-composer .composer{border-radius:16px!important}
+html body .reference-composer .composer-shell{border-radius:16px!important}
+html body :is(.asset-document-table,.stock-inline-table,.reference-transfer-table,.reference-business-table){max-width:100%!important;overflow-x:auto!important;margin:16px 0!important}
+html body :is(.asset-document-table,.stock-inline-table,.reference-transfer-table,.reference-business-table) :is(th,td){padding:8px 16px!important}
+html body :is(.asset-business-metrics,.asset-backlog-row,.task-detail-layout){margin-bottom:24px!important}
+html body #messages .chatmessage:not(.user-message)::before{width:32px!important;height:32px!important}
+html body #messages .chatmessage:not(.user-message)>strong{min-height:32px!important;line-height:32px!important;margin-bottom:8px!important}
+html body #global-ai-orb #one-panel>header{height:64px!important;min-height:64px!important;padding:16px!important;gap:8px!important}
+html body #global-ai-orb .one-messages{padding:24px 16px!important}
+@media(max-width:700px){
+ html body.merp-frame{padding:16px!important}
+ html body :is(.merp-directory-tabbar,.automation-tabbar,.merp-directory-controls,.filters){flex-wrap:wrap!important;gap:16px!important}
+ html body .directory-create-actions{width:100%!important;flex-wrap:wrap!important}
+ html body .task-detail-layout{grid-template-columns:1fr!important}
+ html body dialog{max-width:calc(100vw - 32px)!important;max-height:calc(100dvh - 32px)!important;overflow:auto!important;padding:16px!important}
+ html body dialog.reference-agent-details{padding:0!important}
+ html body #editor #edit-form{grid-template-columns:1fr!important}
+}
+@media(max-height:700px){html body dialog{max-height:calc(100dvh - 32px)!important;overflow:auto!important}}
+/* Explicit button sizes requested after the spacing grid: default 30px, small 25px, large 35px. */
+:root{--erp-button-default-height:30px;--erp-button-small-height:25px;--erp-button-medium-height:30px;--erp-button-large-height:35px}
+html body :is(#new-task,button.btn,button.primary,.confirm-btn,.header-action,.upload-action,.install,.directory-detail,.directory-start,.reference-transfer-open,.role-enter,.risk-rule-confirm,.risk-rule-edit,.asset-filter-query,.asset-filter-reset,.asset-ignore,.asset-apply,.confirm-solution,.material-confirm,.detail-dismiss,.detail-start,.inventory-share-button,.one-continue,.auto-actions>button,.directory-card-actions>button,.directory-create-actions>button,.form-actions>button,.dialog-actions>button,.market-dialog form>button,.query-actions>button,.result-actions>button){
+ height:var(--erp-button-default-height)!important;min-height:var(--erp-button-default-height)!important;max-height:none!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;padding:0 16px!important;line-height:20px!important;
+}
+html body :is(#new-task[data-size="medium"],button.btn-medium,button.btn--medium,button.size-medium,button[data-size="medium"]){height:var(--erp-button-medium-height)!important;min-height:var(--erp-button-medium-height)!important;box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0 24px!important}
+/* Preserve the explicitly requested 200px agent cards with compact action buttons. */
+html body #cards .card.agent-layout-v3{padding:8px 16px!important}
+html body #cards .agent-layout-v3 .bottom{min-height:64px!important;padding-top:8px!important;flex-shrink:0!important}
+html body #cards .agent-layout-v3 .directory-card-actions{min-height:var(--erp-button-default-height)!important}
+/* Automation has one full-width separator below its tab/action row. */
+html body.merp-frame:has(#tasks) .automation-tabbar{width:100%!important;max-width:100%!important;box-sizing:border-box!important;border:0!important;border-bottom:1px solid #E4E7EC!important;box-shadow:none!important}
+html body.merp-frame:has(#tasks) .automation-tabbar>.tabs,
+html body.merp-frame:has(#tasks) .filters{border-top:0!important;border-bottom:0!important;box-shadow:none!important}
+html body.merp-frame:has(#tasks) :is(.automation-tabbar>.tabs,.filters)::before,
+html body.merp-frame:has(#tasks) :is(.automation-tabbar>.tabs,.filters)::after{display:none!important}
+/* Shared tab states for activity, agent/skill catalog and automation. */
+html body :is(#workspace-activity-tabs,.market-tabs,.automation-tabbar>.tabs)>button{
+ position:relative!important;align-self:stretch!important;height:auto!important;min-height:56px!important;margin-bottom:-1px!important;font-size:25px!important;line-height:32px!important;font-weight:700!important;color:#595959!important;background:transparent!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;box-shadow:none!important;
+}
+html body :is(#workspace-activity-tabs,.market-tabs,.automation-tabbar>.tabs)>button:is(.active,.selected,[aria-selected="true"]){color:#0067D1!important;border-bottom-color:#0067D1!important}
+html body :is(#workspace-activity-tabs,.market-tabs,.automation-tabbar>.tabs)>button:hover{color:#0067D1!important;background:transparent!important}
+
+/* Match the catalog divider: tab border overlaps the full-width row border. */
+html body.merp-frame:has(#tasks) .automation-tabbar>.tabs{display:flex!important;align-self:stretch!important;align-items:stretch!important;margin:0 0 -1px!important;padding:0!important;border:0!important}
+html body.merp-frame:has(#tasks) .automation-tabbar>.tabs>button{margin:0!important;align-self:stretch!important}
+
+/* A shared 32px icon slot centers navigation on the H logo and collapse button. */
+html body#merp-workspace.merp #workspace-sidebar .sidebar-brand .logo{width:32px!important;height:32px!important;min-width:32px!important;flex:0 0 32px!important;margin:0!important;box-sizing:border-box!important}
+html body#merp-workspace.merp #workspace-sidebar .nav i{display:flex!important;align-items:center!important;justify-content:center!important;justify-items:center!important;width:32px!important;min-width:32px!important;height:32px!important;flex:0 0 32px!important;margin:0!important}
+html body#merp-workspace.merp #workspace-sidebar .nav i>svg{width:20px!important;height:20px!important;display:block!important;flex:none!important;margin:0!important}
+
+/* Collapsed navigation uses the same 32px hit area as the collapse control. */
+html body#merp-workspace.merp.merp-nav-collapsed #workspace-sidebar .nav{width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;max-height:32px!important;box-sizing:border-box!important;padding:0!important;margin:0 0 8px 8px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:0!important;border-radius:8px!important}
+
+/* Keep only the four primary entries in the collapsed sidebar. */
+html body#merp-workspace.merp.merp-nav-collapsed #workspace-sidebar #myspace-nav{display:none!important}
+/* Session heading and rows share the sidebar's left content edge. */
+html body#merp-workspace.merp #workspace-sidebar .history-heading{margin:0!important;padding:0 8px 8px!important;display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:8px!important;text-align:left!important}
+html body#merp-workspace.merp #workspace-sidebar .history-item{margin:0 0 8px!important;width:100%!important;max-width:100%!important;padding:8px 16px 8px 8px!important;text-align:left!important;box-sizing:border-box!important}
+html body#merp-workspace.merp #workspace-sidebar :is(.history-title,.history-empty){text-align:left!important}
+html body#merp-workspace.merp #workspace-sidebar .history-empty{padding:0 8px!important}
+
+/* Explicit small and large variants share the default button geometry. */
+html body :is(#new-task[data-size="small"],#new-task[data-size="large"],button.btn-small,button.btn--small,button.size-small,button[data-size="small"],button.btn-large,button.btn--large,button.size-large,button[data-size="large"]){box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;line-height:20px!important;padding:0 16px!important;gap:8px!important}
+html body :is(#new-task[data-size="small"],button.btn-small,button.btn--small,button.size-small,button[data-size="small"]){height:var(--erp-button-small-height)!important;min-height:var(--erp-button-small-height)!important}
+html body :is(#new-task[data-size="large"],button.btn-large,button.btn--large,button.size-large,button[data-size="large"]){height:var(--erp-button-large-height)!important;min-height:var(--erp-button-large-height)!important}
+
+/* All status badges use a 5px rounded rectangle. */
+:root{--erp-status-badge-radius:5px}
+html body :is(.badge,.agent-status,.asset-pending-status,.asset-rejected-status,.complete-badge,.concern-badge,.concern-status,.pending-badge,.recon-status,.reference-data-status,.reference-transfer-status,.run-status,.task-status,.risk-rule-status,.ops-progress-status,.transfer-state,span.state,.status,[data-status-badge]){border-radius:var(--erp-status-badge-radius)!important}
+html body#merp-workspace.merp #workspace-sidebar .nav :is(.badge,b){border-radius:var(--erp-status-badge-radius)!important}
+
+/* Anchor every agent action row to the same card bottom. */
+html body #cards .card.agent-layout-v3{display:flex!important;flex-direction:column!important}
+html body #cards .agent-layout-v3 .bottom{margin-top:auto!important;min-height:0!important;padding:8px 0 0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-end!important;flex-wrap:nowrap!important;gap:0!important;flex-shrink:0!important}
+html body #cards .agent-layout-v3 .directory-card-actions{margin:0!important;min-height:var(--erp-button-default-height)!important;align-items:flex-end!important;width:100%!important}
+html body #cards .agent-layout-v3 .bottom>small{line-height:20px!important;margin:0!important}
+
+/* Execution time replaces the former skill row; footer keeps actions only. */
+html body .job.layout-v3 .auto-label{flex:0 0 72px!important}
+html body .job.layout-v3 .auto-footer{justify-content:flex-end!important}
+html body .auto-state{border-radius:var(--erp-status-badge-radius)!important}
+
+/* Compact trigger chip and unbroken execution-time row. */
+html body .job.layout-v3 .auto-trigger{width:fit-content!important;max-width:100%!important;align-self:flex-start!important;flex-shrink:0!important}
+html body .job.layout-v3 .auto-trigger .auto-trigger-text{flex:0 1 auto!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+html body .job.layout-v3 .auto-capabilities>div{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;min-width:0!important}
+html body .job.layout-v3 .auto-capabilities .auto-label{white-space:nowrap!important;font-size:12px!important;line-height:20px!important;flex:0 0 72px!important}
+html body .job.layout-v3 .auto-capabilities>div>span:last-child{flex:1 1 auto!important;min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;font-size:12px!important;line-height:20px!important}
+
+/* Business activity task summary, matching the supplied four-card reference. */
+html body .business-task-summary{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;width:100%!important;max-width:none!important;gap:16px!important;margin:0 0 24px!important;box-sizing:border-box!important}
+html body .business-task-stat{display:flex;align-items:center;gap:12px;min-height:72px;padding:16px;background:#fff;border-radius:16px;box-shadow:0 1px 6px #233f6b0a}
+html body .business-task-icon{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:#EEF3FC;color:#536174}
+html body .stat-1 .business-task-icon{background:#FFE4C2;color:#7A4A10}html body .stat-2 .business-task-icon{background:#FFE8EB;color:#FF3655}html body .stat-3 .business-task-icon{background:#E5FAF3;color:#00B77E}
+html body .business-task-value{display:flex;align-items:baseline;gap:4px;line-height:24px;color:#50617A}html body .business-task-value strong{font-size:22px;color:#111;font-weight:700}html body .business-task-value>span,html body .business-task-label{font-size:12px;color:#50617A}
+html body .asset-document-table table{min-width:880px}html body .asset-document-table td:nth-child(5){white-space:normal;min-width:200px;max-width:320px}
+
+
+html body .business-task-summary>.business-task-stat{width:auto!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+
+html body .business-risk-status{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;padding:4px 8px;border-radius:5px!important;font-size:12px;line-height:16px}
+html body .business-risk-status.risk-high{background:#FFE5E8!important;color:#F43B50!important}html body .business-risk-status.risk-warning{background:#FFF29B!important;color:#805300!important}
+
+/* The entire four-card strip spans every column of the business activity grid. */
+html body #asset-business-categories>.business-task-summary{grid-column:1 / -1!important;min-width:0!important;justify-self:stretch!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:16px!important}
+html body #asset-business-categories>.business-task-summary>.business-task-stat{min-width:0!important;gap:16px!important;align-items:center!important}
+
+/* Activity is a dashboard: no bottom conversation composer in either tab. */
+html body:has(#workspace-activity-tabs:not([hidden]))>.merp-quick-work,
+html body:has(#workspace-activity-tabs:not([hidden])) .app>.main>main>.assistant-panel{display:none!important}
+
+/* AI analysis uses a compact icon action with a full accessible name. */
+html body .asset-document-analysis{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:32px!important;height:32px!important;padding:0!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#0067D1!important;vertical-align:middle!important}
+html body .asset-document-analysis:hover{background:#EDF5FF!important;color:#0057B3!important}
+html body .asset-document-analysis:focus-visible{outline:2px solid #0067D1;outline-offset:2px}
+html body .asset-document-analysis>svg{display:block;width:20px;height:20px;flex:none}
+
+/* Shared card surface: 5px radius, gray outline, no shadow in every state. */
+:root{--erp-card-radius:5px;--erp-card-border:#E4E7EC}
+html body :is(.card,.job,.panel,.stat,.business-task-stat,.asset-business-metric,.task-detail-hero,.inventory-chat-option,[class$="-card"],[class*="-card "]){border-radius:var(--erp-card-radius)!important;box-shadow:none!important;border:1px solid var(--erp-card-border)!important}
+html body :is(.card,.job,.panel,.stat,.business-task-stat,.asset-business-metric,.task-detail-hero,.inventory-chat-option,[class$="-card"],[class*="-card "]):is(:hover,:focus-within,:active){border-radius:var(--erp-card-radius)!important;box-shadow:none!important;border-color:var(--erp-card-border)!important}
+
+/* New-conversation recommendations show their outline only on hover. */
+html body #conversation-recommendations :is(.recommendation-card,.conversation-recommendation){border:1px solid transparent!important;box-sizing:border-box!important;box-shadow:none!important}
+html body #conversation-recommendations :is(.recommendation-card,.conversation-recommendation):hover{border-color:var(--erp-card-border,#E4E7EC)!important}
+html body #conversation-recommendations :is(.recommendation-card,.conversation-recommendation):focus-visible{outline:2px solid #0067D1;outline-offset:2px}
+
+html body .asset-document-link{color:#0067D1!important;text-decoration:none;white-space:nowrap;cursor:pointer}
+html body .asset-document-link:hover{text-decoration:underline}
+html body .asset-document-link:focus-visible{outline:2px solid #0067D1;outline-offset:2px}
+html body .asset-document-table :is(th,td):nth-child(4){min-width:96px;white-space:nowrap}
+
+
+
+}
+
+/* Freeze AI processing results at the right edge of the business activity table. */
+html body #asset-business-categories .asset-document-table{overflow-x:auto;isolation:isolate}
+html body #asset-business-categories .asset-document-table table{border-collapse:separate;border-spacing:0}
+html body #asset-business-categories .asset-document-table .business-ai-result{position:sticky!important;right:0!important;min-width:112px;width:112px;text-align:center;white-space:nowrap;background:#fff!important;z-index:2;box-shadow:-3px 0 6px rgba(25,45,75,.08)}
+html body #asset-business-categories .asset-document-table th.business-ai-result{background:#F5F6F8!important;z-index:3}
+html body #asset-business-categories .asset-document-table td:nth-child(4){white-space:normal;min-width:200px;max-width:320px}
+html body #asset-business-categories .asset-document-table td:nth-child(5){white-space:normal;min-width:180px;max-width:320px}
+
+#inventory-balance-card{margin:20px 0;padding:20px;background:#fff;border:1px solid #E4E7EC;border-radius:12px;box-shadow:0 2px 8px #19191908;min-width:0}
+#inventory-balance-card[hidden]{display:none!important}
+#inventory-balance-card>header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
+#inventory-balance-card h2{margin:0;font-size:16px;font-weight:700;color:#191919}
+#inventory-balance-card header span{font-size:12px;color:#595959}
+.inventory-balance-scroll{overflow-x:auto;max-width:100%}
+#inventory-balance-card table{width:100%;min-width:1000px;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+#inventory-balance-card :is(th,td){padding:10px 12px;border:1px solid #E4E7EC;white-space:nowrap;line-height:22px}
+#inventory-balance-card thead th{text-align:center;background:#EEF4F9;font-weight:600}
+#inventory-balance-card tbody th{text-align:left;font-weight:400;background:#fff}
+#inventory-balance-card td{text-align:right;color:#191919;background:#fff}
+#inventory-balance-card .inventory-subtotal>*{font-weight:600;background:#F5F6F8}
+#inventory-balance-card .inventory-total>*{font-weight:700;background:#EDF5FF}
+
+#inventory-balance-card>header{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:4px!important;padding:0!important;margin:0 0 16px!important}
+#inventory-balance-card #inventory-balance-title{display:block!important;order:0!important;margin:0!important;font-size:16px!important;font-weight:700!important}
+#inventory-balance-card>header>span{order:1!important}
+#inventory-balance-card td.inventory-over-threshold{color:#B42318!important;font-weight:600}
+
+#inventory-balance-report .inventory-analysis-navigation{display:flex;gap:24px;align-items:center;overflow-x:auto;border-bottom:1px solid #E4E7EC;background:#fff;padding:0 16px;margin:16px 0}
+#inventory-balance-report .inventory-analysis-navigation [role="tab"]{display:block;flex:none;padding:14px 0;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:#595959;font-size:14px;font-weight:400;text-decoration:none;white-space:nowrap}
+#inventory-balance-report .inventory-analysis-navigation [role="tab"][aria-selected="true"]{color:#0067D1;font-weight:700;border-bottom-color:#0067D1;background:transparent}
+#inventory-balance-report .inventory-analysis-navigation [role="tab"]:focus-visible{outline:2px solid #0067D1;outline-offset:-2px}
+#inventory-balance-report [role="tabpanel"][hidden]{display:none!important}
+
+#inventory-balance-card .inventory-region-drilldown{padding:0;border:0;background:transparent;color:#B42318;font:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}#inventory-balance-card .inventory-region-drilldown:focus-visible{outline:2px solid #0067D1;outline-offset:3px}

@@ -1,0 +1,11 @@
+.reference-composer .advisor-motion{position:absolute;right:18px;bottom:-7px;width:142px;height:138px;z-index:5;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(45,69,118,.16))}
+.reference-composer .advisor-motion .composer-mascot{position:static;width:100%;height:100%;object-fit:contain;object-position:center bottom;transform:none;filter:none}
+.reference-composer{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:0!important;transform:none!important;transition:none!important;will-change:auto!important}
+.reference-composer .composer-shell{background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-radius:0!important;padding-bottom:0;transform:none!important;transition:none!important;will-change:auto!important}
+.reference-composer .advisor-motion{animation:none;transform:none}
+.reference-composer .advisor-motion .composer-mascot:hover{transform:none}
+.reference-composer::after,.reference-composer .composer-shell::after{display:none!important}
+.reference-composer:hover,.reference-composer .composer-shell:hover{transform:none!important;box-shadow:none!important}
+.reference-composer .composer-top{min-height:126px;padding-right:158px}
+@media(max-width:850px){.reference-composer .advisor-motion{right:9px;width:116px;height:112px}.reference-composer .composer-top{padding-right:129px;min-height:108px}}
+@media(max-width:550px){.reference-composer .advisor-motion{right:2px;width:89px;height:88px}.reference-composer .composer-top{padding-right:98px;min-height:96px}}

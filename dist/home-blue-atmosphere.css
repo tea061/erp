@@ -1,0 +1,25 @@
+/* Blue atmosphere is exclusive to the role-selection landing page. */
+html body.choosing-role #role-screen{
+ position:relative;isolation:isolate;
+ background:radial-gradient(ellipse at 50% 48%,#dceaff 0%,#eaf3ff 34%,#f6faff 65%,#fdfeff 100%)!important;
+ animation:none!important;
+}
+html body.choosing-role #role-screen::before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%3E%3Cpath%20d%3D%22M22%2010H106M10%2022V106%22%20fill%3D%22none%22%20stroke%3D%22%237c9fc7%22%20stroke-opacity%3D%22.14%22%20stroke-width%3D%22.7%22%2F%3E%3C%2Fsvg%3E");
+ background-size:120px 120px;
+ mask-image:radial-gradient(ellipse at center,#000 10%,#0009 56%,transparent 90%);
+ animation:none!important;
+}
+@media print{html body.choosing-role #role-screen{background:white!important}html body.choosing-role #role-screen::before{display:none!important}}
+
+/* Role selection, rather than hover, determines card opacity. */
+@layer erp-grid{
+html body.choosing-role #role-screen #role-cards .role-card:not(.selected):not(:disabled){background:rgba(255,255,255,.54)!important;background-image:none!important}
+html body.choosing-role #role-screen #role-cards .role-card.selected{background:#FFF!important;background-image:none!important}
+}
+
+/* Home entry CTA doubles the previous 30px height. */
+@layer erp-grid{
+html body.choosing-role #role-screen #enter-workspace{height:60px!important;min-height:60px!important;max-height:60px!important}
+}

@@ -1,0 +1,4 @@
+/* Flat sidebar navigation. The historical glass highlight is retired. */
+#workspace-sidebar{position:fixed;isolation:isolate;box-shadow:none!important}
+#workspace-sidebar .nav{position:relative;box-shadow:none!important;filter:none!important;text-shadow:none!important}
+#workspace-sidebar .nav-glass-pill{display:none!important;box-shadow:none!important;filter:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:none!important;border:0!important}

@@ -1,0 +1,1 @@
+(()=>{for(const id of ['agent-toggle','skill-toggle']){const b=document.getElementById(id);if(!b)continue;const clean=()=>{for(const n of b.childNodes)if(n.nodeType===Node.TEXT_NODE&&/[⌄▾∨]/.test(n.textContent))n.textContent=n.textContent.replace(/\s*[⌄▾∨]/g,'')};new MutationObserver(clean).observe(b,{childList:true,characterData:true,subtree:true});clean()}})();

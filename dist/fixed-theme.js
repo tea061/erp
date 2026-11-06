@@ -1,0 +1,1 @@
+/* Fixed theme is declared in each document before its first render. No late iframe style injection. */

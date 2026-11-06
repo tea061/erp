@@ -1,0 +1,22 @@
+/* Dashboard derived from the carrier inventory balance report, in MUSD. */
+(()=>{
+const groups={site:{label:'站点存货',total:9.58,rows:[['土耳其',10.79],['波兰',-3.57],['其他代表处',2.36]]},transit:{label:'在途存货',total:5.65,rows:[['土耳其',2.84],['其他代表处',2.81]]},warehouse:{label:'区域仓存货',total:-5.35,rows:[['土耳其',-5.81],['其他代表处',0.46]]}};
+const signed=value=>(value>0?'+':'')+value.toFixed(2);
+function waterfall(){
+ const values=[9.58,5.65,-5.35,-0.62],labels=['站点存货','在途存货','区域仓存货','其他存货','净增额'];
+ const y=value=>208-value*10,x=i=>61+i*107,w=52;let sum=0;
+ let marks=[0,5,10,15].map(v=>'<line x1="36" x2="590" y1="'+y(v)+'" y2="'+y(v)+'" stroke="#e9edf3"/><text x="27" y="'+(y(v)+4)+'" text-anchor="end" fill="#8591a2">'+v+'</text>').join('');
+ values.concat(9.26).forEach((v,i)=>{const start=i===4?0:sum,end=i===4?v:sum+v;const top=y(Math.max(start,end)),height=Math.abs(end-start)*10;
+ marks+='<rect x="'+x(i)+'" y="'+top+'" width="'+w+'" height="'+height+'" rx="4" fill="'+(i===4?'#144b98':v>0?'#2784ed':'#f3a44c')+'"><title>'+labels[i]+'：'+signed(v)+' MUSD</title></rect><text x="'+(x(i)+w/2)+'" y="'+(top-9)+'" text-anchor="middle" fill="#263d59" font-weight="600">'+signed(v)+'</text><text x="'+(x(i)+w/2)+'" y="238" text-anchor="middle" fill="#667085">'+labels[i]+'</text>';
+ if(i<4){sum=end;marks+='<line x1="'+(x(i)+w)+'" x2="'+x(i+1)+'" y1="'+y(end)+'" y2="'+y(end)+'" stroke="#adb9c9" stroke-dasharray="3 3"/>'}
+ });
+ return '<svg viewBox="0 0 610 260" role="img" aria-label="存货净增额瀑布图：站点增加9.58，在途增加5.65，区域仓减少5.35，其他减少0.62，净增加9.26 MUSD。">'+marks+'</svg>';
+}
+function regional(key){const data=groups[key],zero=160,scale=14;
+ return '<svg viewBox="0 0 440 200" role="img" aria-label="'+data.label+'代表处变动，合计'+signed(data.total)+' MUSD"><line x1="'+zero+'" x2="'+zero+'" y1="12" y2="178" stroke="#d9e1eb"/>'+data.rows.map(([name,value],i)=>{const y=26+i*51,width=Math.abs(value)*scale;return '<text x="0" y="'+(y+18)+'" fill="#667085">'+name+'</text><rect x="'+(value>=0?zero:zero-width)+'" y="'+y+'" width="'+width+'" height="26" rx="4" fill="'+(value>=0?'#2784ed':'#f3a44c')+'"><title>'+name+'：'+signed(value)+' MUSD</title></rect><text x="'+(value>=0?zero+width+8:zero-width-8)+'" y="'+(y+18)+'" text-anchor="'+(value>=0?'start':'end')+'" fill="#263d59" font-weight="600">'+signed(value)+'</text>'}).join('')+'</svg><p class="inventory-chart-total">'+data.label+'净变动 <strong>'+signed(data.total)+' MUSD</strong></p>';
+}
+window.inventoryDashboardMarkup=()=>'<section class="inventory-business-dashboard" aria-label="运营商存货看板"><div class="inventory-dashboard-heading"><div><span class="inventory-dashboard-eyebrow">业务概览</span><h2>运营商存货看板</h2></div><span class="inventory-dashboard-note">本期对比上月 · MUSD · 演示数据</span></div><div class="inventory-dashboard-metrics">'+[
+ ['本期存货余额','331.33','MUSD','本期库存资金占用'],['上期存货余额','322.07','MUSD','331.33 − 9.26'],['本期净增加','+9.26','MUSD','分类变动合计'],['余额波动比例','+2.88','%','9.26 ÷ 322.07']
+ ].map(([label,value,unit,note])=>'<div class="inventory-dashboard-metric"><span>'+label+'</span><strong>'+value+'<small>'+unit+'</small></strong><p>'+note+'</p></div>').join('')+'</div><div class="inventory-dashboard-charts"><section class="inventory-chart-card"><div class="inventory-chart-heading"><h3>净增额从哪里来</h3><div class="inventory-chart-legend"><span><i></i>增加</span><span><i class="decrease"></i>减少</span></div></div>'+waterfall()+'<p class="inventory-chart-insight">站点与在途合计增加 <b>15.23M</b>，区域仓及其他减少 <b>5.97M</b>，最终净增加 <b>9.26M</b>。</p></section><section class="inventory-chart-card"><div class="inventory-chart-heading"><h3>代表处变动对比</h3><span class="inventory-chart-unit">MUSD</span></div><div class="inventory-chart-tabs" role="tablist" aria-label="存货类别">'+Object.entries(groups).map(([key,data])=>'<button role="tab" data-inventory-chart="'+key+'" aria-selected="'+(key==='site')+'">'+data.label+'</button>').join('')+'</div><div class="inventory-regional-chart" role="tabpanel" aria-label="代表处变动对比">'+regional('site')+'</div></section></div><div class="inventory-dashboard-takeaway"><span>重点关注</span><p>土耳其站点存货增加 <b>10.79M</b>，是主要增长来源；区域仓减少 <b>5.35M</b>，应持续跟进交付结转和在途签收。</p></div></section>';
+window.bindInventoryDashboard=root=>root.querySelectorAll('[data-inventory-chart]').forEach(button=>button.onclick=()=>{root.querySelectorAll('[data-inventory-chart]').forEach(b=>b.setAttribute('aria-selected',String(b===button)));root.querySelector('.inventory-regional-chart').innerHTML=regional(button.dataset.inventoryChart)});
+})();

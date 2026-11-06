@@ -1,0 +1,20 @@
+/* Reference overview data, shared by business dynamics and AI query results. */
+(()=>{
+const number=n=>n.toLocaleString('en-US');
+const stock=Array.from({length:12},(_,i)=>{
+ const item=[['PCB-A100','主控板','A.1','块'],['HSG-A100','铝制外壳','B.2','套'],['CON-D400','连接器','A.0','个']][i%3];
+ return ['华东库存组织',item[0],item[1],i%2?'WIP01':'RM01',item[2],'A-'+String(i+1).padStart(2,'0'),'LOT-202610'+(20+i%4)+'-'+String(i+1).padStart(3,'0'),number(2100-i*40)+' '+item[3],number((2100-i*40)/100)+' 箱',number(1600-i*30)+' '+item[3],number(2000-i*40)+' '+item[3]];
+});
+const orders=(prefix,count,start,party,state)=>Array.from({length:count},(_,i)=>[prefix+'-20261026-'+String(i+1).padStart(3,'0'),party[i%2],'主控板 PCB-A100',String(start+i*10),'2026-10-'+(27+i%5),state]);
+const data={
+ stock:{title:'库存现有量及可用量',headers:['库存组织','物料编码','物料描述','子库','物料版本','货位','批次编码','主单位数量（单位）','辅助单位数量（单位）','主单位数量（单位）','主单位数量（单位）'],rows:stock,agent:'库存作业智能体',groups:[['基本信息',7],['现有量',2],['可预留量',1],['可处理量',1]]},
+ purchase:{title:'本周待交付采购',headers:['采购订单','供应商','物料','数量','交付日期','状态'],rows:orders('PO',32,100,['华芯电子有限公司','恒达精密制造'],'待交付'),agent:'采购履行智能体'},
+ transfer:{title:'待处理转库单',headers:['转库单','物料','调出子库','调入子库','数量','状态'],rows:Array.from({length:18},(_,i)=>['TR-20261026-'+String(i+1).padStart(3,'0'),'主控板 PCB-A100','RM01','WIP01',String(100+i*10),'待处理']),agent:'库存作业智能体'},
+ sales:{title:'本周待发货销售订单',headers:['销售订单','客户','物料','数量','计划发货','状态'],rows:orders('SO',24,200,['远景科技','启辰工业'],'待发货'),agent:'订单作业智能体'},
+ material:{title:'查询物料',headers:['物料编码','物料名称','规格','单位','状态'],rows:[['PCB-A100','主控板','A100 标准控制板','块','有效'],['HSG-A100','铝制外壳','A100 铝合金外壳','套','有效']],agent:'生产作业智能体'}
+};
+function table(key,page=0){const d=data[key],pages=Math.ceil(d.rows.length/6);page=Math.max(0,Math.min(page,pages-1));return '<div class="reference-table-scroll"><table class="reference-business-table"><caption class="sr-only">'+d.title+'（示例数据）</caption><thead>'+(d.groups?'<tr class="reference-group-head">'+d.groups.map(g=>'<th scope="colgroup" colspan="'+g[1]+'">'+g[0]+'</th>').join('')+'</tr>':'')+'<tr>'+d.headers.map(h=>'<th scope="col">'+h+'</th>').join('')+'</tr></thead><tbody>'+d.rows.slice(page*6,page*6+6).map((r,i)=>'<tr>'+r.map((v,c)=>'<td>'+(c===(key==='stock'?1:0)?'<button class="reference-record-link" data-query-row="'+(page*6+i)+'">'+v+'</button>':c===r.length-1&&key!=='stock'?'<span class="reference-data-status">'+v+'</span>':v)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'+(pages>1?'<div class="reference-pagination"><span>共 '+d.rows.length+' 条 · 第 '+(page+1)+' / '+pages+' 页</span><div><button data-page="'+(page-1)+'" '+(page===0?'disabled':'')+'>上一页</button><button data-page="'+(page+1)+'" '+(page===pages-1?'disabled':'')+'>下一页</button></div></div>':'');}
+window.HerpBusinessReference={data,table};
+const original=renderConcerns,keys=['stock','purchase','transfer','sales'];
+renderConcerns=function(tab=0,page=0){if(!isWarehouseRole()){document.getElementById('concerns')?.classList.remove('reference-concerns');original(tab);return}tab=Math.max(0,Math.min(3,tab));const key=keys[tab],root=document.getElementById('concerns');concernTab=tab;root.hidden=false;document.querySelector('.assistant-panel').hidden=true;root.classList.add('reference-concerns');root.innerHTML='<div class="concern-head"><h2>你可能关注</h2><small>与你相关的业务动态</small></div><div class="concern-panel"><div class="concern-tabs" role="tablist" aria-label="业务数据类型">'+keys.map((k,i)=>'<button type="button" role="tab" aria-selected="'+(i===tab)+'" class="'+(i===tab?'selected':'')+'" data-business-tab="'+i+'">'+data[k].title+'<span>'+data[k].rows.length+'</span></button>').join('')+'</div>'+table(key,page)+'</div>';root.querySelectorAll('[data-business-tab]').forEach(b=>b.onclick=()=>renderConcerns(Number(b.dataset.businessTab)));root.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>renderConcerns(tab,Number(b.dataset.page)));root.querySelectorAll('[data-query-row]').forEach(b=>b.onclick=()=>window.openBusinessQuery(key,Number(b.dataset.queryRow)));};
+})();

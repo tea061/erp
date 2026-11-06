@@ -1,0 +1,40 @@
+/* Shared glass interaction across the workbench and embedded pages. */
+:is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row){
+  --glow-x:50%;--glow-y:50%;--tilt-x:0deg;--tilt-y:0deg;--glow-opacity:0;
+  position:relative;
+  background:radial-gradient(380px circle at var(--glow-x) var(--glow-y),rgba(105,185,255,calc(.18 * var(--glow-opacity))),transparent 72%),rgba(255,255,255,.62)!important;
+  border:1px solid rgba(184,218,255,.7)!important;
+  border-radius:20px;
+  box-shadow:0 14px 42px rgba(0,79,167,.10),inset 0 1px rgba(255,255,255,.88),0 0 16px rgba(0,103,209,.07)!important;
+  backdrop-filter:blur(22px) saturate(150%);
+  -webkit-backdrop-filter:blur(22px) saturate(150%);
+  transform:perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition:transform .46s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,background-color .35s ease;
+  will-change:transform;
+}
+:is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row)::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  padding:1.5px;
+  background:radial-gradient(240px circle at var(--glow-x) var(--glow-y),rgba(255,255,255,calc(.98 * var(--glow-opacity))),rgba(67,158,255,calc(.78 * var(--glow-opacity))) 35%,transparent 72%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:var(--glow-opacity);transition:opacity .4s ease;
+}
+:is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row):hover{
+  box-shadow:0 22px 52px rgba(0,87,178,.16),inset 0 1px rgba(255,255,255,.95),0 0 24px rgba(0,103,209,.2)!important;
+}
+@media(hover:none),(prefers-reduced-motion:reduce){
+  :is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row){transform:none!important;will-change:auto}
+}
+/* Overview metrics stay still while the remaining cards retain glass hover feedback. */
+#stats .stat,#stats .stat:hover{
+  --glow-opacity:0!important;
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+  border-color:rgba(184,218,255,.7)!important;
+  box-shadow:0 14px 42px rgba(0,79,167,.10),inset 0 1px rgba(255,255,255,.88),0 0 16px rgba(0,103,209,.07)!important;
+}
+#stats .stat::after{display:none!important}
+/* Static cards, including standalone embedded views. */
+:is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row,.job),:is(.card,.panel,.concern-panel,.assistant-panel,.composer-shell,.task-detail-card,.task-detail-hero,.market-intro,.hero,.stat,.stats>*,.role-card,.task-summary,.market-card,.activity-card,.analysis-block,.material-choice,.overview,.details,.legend,.taxonomy-panel,.catalog-builder,.execution-row,.job):hover{transform:none!important;translate:none!important;rotate:none!important;scale:none!important;will-change:auto!important}

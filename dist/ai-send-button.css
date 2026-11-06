@@ -1,0 +1,12 @@
+/* AI send control matches the supplied blue circle and fine white arrow. */
+html body:is(#merp-workspace,#merp-embedded,body) :is(#sendBtn,.send-btn,#global-ai-orb .one-compose button[type=submit]){
+position:relative!important;display:grid!important;place-items:center!important;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;max-width:32px!important;max-height:32px!important;flex:0 0 32px!important;padding:0!important;border:0!important;border-radius:50%!important;background:#0067D1!important;box-shadow:none!important;color:#fff!important;font-size:0!important;line-height:0!important;opacity:1!important;cursor:pointer;
+}
+html body:is(#merp-workspace,#merp-embedded,body) :is(#sendBtn,.send-btn,#global-ai-orb .one-compose button[type=submit])>*{display:none!important}
+html body:is(#merp-workspace,#merp-embedded,body) :is(#sendBtn,.send-btn,#global-ai-orb .one-compose button[type=submit])::before{
+content:"";display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:16px;height:16px;background:#fff;
+-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 13V3M3 8l5-5 5 5' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 13V3M3 8l5-5 5 5' fill='none' stroke='black' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+html body:is(#merp-workspace,#merp-embedded,body) :is(#sendBtn,.send-btn,#global-ai-orb .one-compose button[type=submit]):hover:not(:disabled){background:#0057B3!important}
+html body:is(#merp-workspace,#merp-embedded,body) :is(#sendBtn,.send-btn,#global-ai-orb .one-compose button[type=submit]):disabled{background:#B8D2EE!important;cursor:default!important}
